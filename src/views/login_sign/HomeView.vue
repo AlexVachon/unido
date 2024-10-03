@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { RouterView } from 'vue-router'
+
+
 import menuComp from '@/components/views/menu.vue';
+
 </script>
 
 <template>
@@ -7,6 +11,6 @@ import menuComp from '@/components/views/menu.vue';
     <menuComp />
   </header>
   <main>
-    <h1>This is homepage</h1>
+    <RouterView />
   </main>
 </template>
