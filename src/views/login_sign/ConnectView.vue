@@ -1,16 +1,24 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { ElMain, ElHeader, ElContainer } from 'element-plus'
 
 
-import menuComp from '@/components/views/menu.vue';
+import menuComp from '@/components/menu/menu.vue';
 
 </script>
 
 <template>
-  <header>
-    <menuComp />
-  </header>
-  <main>
-    <RouterView />
-  </main>
+  <el-container>
+    <el-header>
+      <menuComp />
+    </el-header>
+    <el-container class="container">
+      <el-main>
+        <div>
+          <RouterView />
+        </div>
+      </el-main>
+    </el-container>
+
+  </el-container>
 </template>

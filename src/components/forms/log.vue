@@ -1,9 +1,11 @@
 <template>
-    <h1>Login page</h1>
-    <LogForm />
+
+<el-card style="max-width: 480px;">
+    FORM LOGIN
+</el-card>
+
 </template>
 <script lang="ts" setup>
-import LogForm from '@/components/forms/log.vue';
 
 </script>
 <style lang="css" scoped>
