@@ -1,5 +1,5 @@
 <template>
-    <h2>Login page</h2>
+This is app homeview
 </template>
 <script lang="ts" setup>
 
