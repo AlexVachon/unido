@@ -1,7 +1,7 @@
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
-import '/src/assets/styles/main.scss'
+import '/src/assets/styles/main.sass'
 
 import { createApp } from 'vue'
 import App from './App.vue'

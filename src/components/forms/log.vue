@@ -1,25 +1,40 @@
 <template>
     <el-card class="card-width p-4" shadow="always">
-        <el-form :model="form" status-icon :rules="rules" ref="loginForm" label-position="top">
-            <el-form-item label="E-mail" prop="email">
-                <el-input v-model="form.email" placeholder="Enter your email" />
-            </el-form-item>
+        <template #default>
 
-            <el-form-item label="Mot de passe" prop="password">
-                <el-input v-model="form.password" placeholder="Enter your password" show-password />
-            </el-form-item>
+            <el-form :model="form" status-icon :rules="rules" ref="loginForm" label-position="top">
+                <el-form-item :label="t('email')" prop="email">
+                    <el-input v-model="form.email" :placeholder="t('enterEmail')" />
+                </el-form-item>
 
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('loginForm')">Se connecter</el-button>
-                <el-button @click="resetForm('loginForm')">Réinitialiser</el-button>
-            </el-form-item>
-        </el-form>
+                <el-form-item :label="t('password')" prop="password">
+                    <el-input v-model="form.password" :placeholder="t('enterPassword')" show-password />
+                </el-form-item>
+
+                <el-form-item>
+                    <div class="mx-auto mt-2">
+                        <el-button type="primary" @click="submitForm('loginForm')">{{ t('login') }}</el-button>
+                        <el-button @click="resetForm(loginForm)">{{ t('reset') }}</el-button>
+                    </div>
+                </el-form-item>
+            </el-form>
+        </template>
+        <template #footer>
+            <div class="flex justify-around my-2">
+                <el-link type="primary">{{ t('forgetEmail') }}</el-link>
+                <el-link type="primary">{{ t('forgetPassword') }}</el-link>
+            </div>
+        </template>
     </el-card>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { ElMessage } from 'element-plus';
+import type { FormInstance } from 'element-plus';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 // Form data
 const form = ref({
@@ -27,30 +42,29 @@ const form = ref({
     password: '',
 });
 
-// Form validation rules
+const loginForm = ref<FormInstance>();
+
 const rules = ref({
     email: [
-        { required: true, message: "L'email est requis", trigger: 'blur' },
-        { type: 'email', message: "Veuillez entrer un e-mail valide", trigger: ['blur', 'change'] },
+        { required: true, message: t('requiredEmail'), trigger: 'blur' },
+        { type: 'email', message: t('validationEmail'), trigger: ['blur', 'change'] },
     ],
     password: [
-        { required: true, message: 'Le mot de passe est requis', trigger: 'blur' },
-        { min: 6, message: 'Le mot de passe doit comporter au moins 6 caractères', trigger: 'blur' },
+        { required: true, message: t('requiredPassword'), trigger: 'blur' },
+        { min: 6, message: t('validationPassword'), trigger: 'blur' },
     ],
 });
 
-// Form submit function
 const submitForm = (formName: string) => {
-    const formRef = ref(null);
-    formRef.value?.validate((valid: boolean) => {
+    loginForm.value?.validate((valid: boolean) => {
         if (valid) {
             ElMessage({
-                message: 'Connexion réussie !',
+                message: t('loginSuccess'),
                 type: 'success',
             });
         } else {
             ElMessage({
-                message: 'Veuillez vérifier les champs du formulaire.',
+                message: t('formError'),
                 type: 'error',
             });
             return false;
@@ -59,9 +73,12 @@ const submitForm = (formName: string) => {
 };
 
 // Reset form function
-const resetForm = (formName: string) => {
-    const formRef = ref(null);
-    formRef.value?.resetFields();
+const resetForm = (formEl: FormInstance | undefined) => {
+    if (formEl) {
+        formEl.resetFields();
+        form.value.email = '';
+        form.value.password = '';
+    }
 };
 </script>
 
