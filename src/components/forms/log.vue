@@ -9,6 +9,7 @@
 
                 <el-form-item :label="t('password')" prop="password">
                     <el-input v-model="form.password" :placeholder="t('enterPassword')" show-password />
+                    <el-link  :underline="false" type="primary" class="my-1 p-0.5 hover:underline">{{ t('forgetPassword') }}</el-link>
                 </el-form-item>
 
                 <el-form-item>
@@ -18,12 +19,6 @@
                     </div>
                 </el-form-item>
             </el-form>
-        </template>
-        <template #footer>
-            <div class="flex justify-around my-2">
-                <el-link type="primary">{{ t('forgetEmail') }}</el-link>
-                <el-link type="primary">{{ t('forgetPassword') }}</el-link>
-            </div>
         </template>
     </el-card>
 </template>

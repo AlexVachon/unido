@@ -6,7 +6,6 @@ const router = createRouter({
   routes: [
     {
       path: '/:locale',
-      name: 'locale',
       component: () => import('@/views/login_sign/ConnectView.vue'),
       children: [
         {
@@ -31,26 +30,33 @@ const router = createRouter({
     },
     {
       path: '/:catchAll(.*)',
-      redirect: '/:locale/login',
+      redirect: to => {
+        const locale = localStorage.getItem('locale') || 'en';
+        return `/${locale}/login`;
+      },
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
-  const language = to.params.locale || 'en';
+  const language = to.params.locale || localStorage.getItem('locale') || 'en';
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   const authNotRequired = ['sign', 'login'];
 
   if (!['en', 'fr'].includes(language as string)) {
-    return next(`/en/login`);
+    // @ts-ignore
+    i18n.global.locale = 'en'
+    return next(`/${localStorage.getItem('locale')}/login`);
   } else {
     // @ts-ignore
     i18n.global.locale = language;
+    localStorage.setItem('locale', language as string);
   }
 
   if (!to.params.locale) {
     return next(`/${language}/login`);
   }
+
   if (!authNotRequired.includes(to.name as string) && !isLoggedIn) {
     return next({ name: 'login', params: { locale: language } });
   }

@@ -15,7 +15,6 @@ const messages = {
     loginSuccess: 'Login successful!',
     formError: 'Please check the form fields.',
     forgetPassword: "Forgot your password ?",
-    forgetEmail: "Forgot your email ?"
   },
   fr: {
     login: 'Connexion',
@@ -31,12 +30,11 @@ const messages = {
     loginSuccess: 'Connexion réussie !',
     formError: 'Veuillez vérifier les champs du formulaire.',
     forgetPassword: "Oublié votre mot de passe ?",
-    forgetEmail: "Oublié votre e-mail ?"
   },
 };
 
 const i18n = createI18n({
-  locale: 'en',
+  locale: localStorage.getItem('lang') as string,
   messages,
 });
 
