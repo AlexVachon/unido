@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/:locale',
       name: 'locale',
-      component: import('@/views/login_sign/ConnectView.vue'),
+      component: () => import('@/views/login_sign/ConnectView.vue'),
       children: [
         {
           path: 'login',
