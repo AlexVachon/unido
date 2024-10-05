@@ -15,6 +15,9 @@ const messages = {
     loginSuccess: 'Login successful!',
     formError: 'Please check the form fields.',
     forgetPassword: "Forgot your password ?",
+    login_or: "or",
+    no_account: "New to Easy ?",
+    join_now: "Join now"
   },
   fr: {
     login: 'Connexion',
@@ -30,6 +33,9 @@ const messages = {
     loginSuccess: 'Connexion réussie !',
     formError: 'Veuillez vérifier les champs du formulaire.',
     forgetPassword: "Oublié votre mot de passe ?",
+    login_or: "ou",
+    no_account: "Nouveau sur Easy ?",
+    join_now: "Rejoindre maintenant"
   },
 };
 

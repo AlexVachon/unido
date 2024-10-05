@@ -1,24 +1,32 @@
 <template>
     <el-card class="card-width p-4" shadow="always">
         <template #default>
-
-            <el-form :model="form" status-icon :rules="rules" ref="loginForm" label-position="top">
+            <el-form :model="form" status-icon :rules="rules" ref="loginForm" label-position="top" class="mb-3">
                 <el-form-item :label="t('email')" prop="email">
                     <el-input v-model="form.email" :placeholder="t('enterEmail')" />
                 </el-form-item>
 
                 <el-form-item :label="t('password')" prop="password">
                     <el-input v-model="form.password" :placeholder="t('enterPassword')" show-password />
-                    <el-link  :underline="false" type="primary" class="my-1 p-0.5 hover:underline">{{ t('forgetPassword') }}</el-link>
+                    <el-link :underline="false" type="primary" class="my-1 p-0.5 hover:underline">{{ t('forgetPassword')
+                        }}</el-link>
                 </el-form-item>
 
                 <el-form-item>
-                    <div class="mx-auto mt-2">
+                    <div class="mx-auto mt-3">
                         <el-button type="primary" @click="submitForm('loginForm')">{{ t('login') }}</el-button>
                         <el-button @click="resetForm(loginForm)">{{ t('reset') }}</el-button>
                     </div>
                 </el-form-item>
             </el-form>
+            <el-divider>
+                <el-text type="info" class="uppercase">{{ t('login_or') }}</el-text>
+            </el-divider>
+            <div class="text-center">
+                <el-text>
+                    {{ t('no_account') }} <el-link @click="$router.push({ name: 'sign' })" type="primary" class="hover:underline" :underline="false">{{ t('join_now') }}</el-link>
+                </el-text>
+            </div>
         </template>
     </el-card>
 </template>
