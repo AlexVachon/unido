@@ -1,10 +1,8 @@
-.container {
-    display: block;
-    max-width: 1280px;
-    min-width: 600px;
-    margin: 0 auto;
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
+    
 .container-logo {
     display: flex;
     justify-content: center;

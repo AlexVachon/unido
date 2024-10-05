@@ -1,12 +1,12 @@
 <template>
 <el-menu
     :default-active="activeIndex"
-    class=""
+    class="my-2"
     mode="horizontal"
     :ellipsis="false"
     router
 >
-    <el-menu-item index="0":to="{ name: 'login' }">
+    <el-menu-item index="0" :to="{ name: 'login' }">
         <el-container class="container-logo">
             <div>
                 <img src="@/assets/logo_small.svg" alt="test"/>
